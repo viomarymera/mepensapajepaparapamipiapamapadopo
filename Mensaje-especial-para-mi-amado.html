@@ -1,0 +1,130 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta Secreta by myeya</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fce4ec;
+    }
+    .screen {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .active {
+      display: flex;
+    }
+    .password-screen {
+      flex-direction: column;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    .key {
+      background-color: #f8bbd0;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .key:hover {
+      background-color: #f48fb1;
+    }
+    .input-display {
+      font-size: 24px;
+      margin-top: 20px;
+      letter-spacing: 8px;
+    }
+    .notepad {
+      background-color: #fff0f6;
+      border: 3px solid #f8bbd0;
+      padding: 20px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      text-align: left;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      line-height: 1.6;
+    }
+    .notepad h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+<div id="passwordScreen" class="screen password-screen active">
+  <h2>🔒 Enter password</h2>
+  <div class="input-display" id="inputDisplay">••••</div>
+  <div class="keypad">
+    <button class="key" onclick="enterDigit('1')">1</button>
+    <button class="key" onclick="enterDigit('2')">2</button>
+    <button class="key" onclick="enterDigit('3')">3</button>
+    <button class="key" onclick="enterDigit('4')">4</button>
+    <button class="key" onclick="enterDigit('5')">5</button>
+    <button class="key" onclick="enterDigit('6')">6</button>
+    <button class="key" onclick="enterDigit('7')">7</button>
+    <button class="key" onclick="enterDigit('9')">9</button>
+    <button class="key" onclick="enterDigit('8')">8</button>
+    <div></div>
+    <button class="key" onclick="enterDigit('0')">0</button>
+    <div></div>
+  </div>
+</div>
+<div id="notepadScreen" class="screen">
+  <div class="notepad">
+    <h3>📅 31 Marzo 2026 </h3>
+    <h4>💌 Mi tesoro Paúl, </h4>
+    <p>
+      Hoy te escribo porque cumplimos 2 meses desde que regresamos. Y sí… este mes tiene 31 días, así que oficialmente puedo decir que sí, son 2 meses.
+    </p>
+    <p>
+      A veces todavía me cuesta creerlo. Después de todo lo que pasó, de todo el tiempo y las experiencias… volvimos a encontrarnos. Y eso, de verdad, me hace muy feliz.
+Quiero que sepas lo importante que es para mí tenerte a mi lado. Y sí, aunque tú digas que no hay nada que agradecer, yo sí lo hago. Porque veo tu esfuerzo, lo siento, y lo valoro. Sé que esto es de ambos, pero aun así… me nace agradecerte.
+    </p>
+    <p>
+     Contigo me siento amada, cuidada, escuchada y acompañada de una forma que nunca antes había sentido. No es algo que digo por decir, es algo que realmente vivo contigo.
+Gracias por estar, por tu tiempo, por tu cariño y por tu forma de querer.
+    </p>
+    <p>
+      Y aunque ya te lo he dicho muchas veces… contigo mi corazón, y todo lo que soy, está en paz.
+Eres mi alegría de todos los días y la razón de muchas de mis sonrisas.
+Te amo profundamente ♡
+    </p>
+  </div>
+</div>
+<script>
+  const correctPassword = '310126';
+  let input = '';
+  function enterDigit(digit) {
+    if (input.length < 6) {
+      input += digit;
+    }
+    const display = document.getElementById('inputDisplay');
+    display.textContent = input.padEnd(6, '•');
+    if (input.length === 6) {
+      if (input === correctPassword) {
+        document.getElementById('passwordScreen').classList.remove('active');
+        document.getElementById('notepadScreen').classList.add('active');
+      } else {
+        alert('Contraseña incorecta, intenta de nuevo');
+        input = '';
+        display.textContent = '••••';
+      }
+    }
+  }
+</script>
+</body>
+</html>
